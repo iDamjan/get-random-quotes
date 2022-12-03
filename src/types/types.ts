@@ -24,6 +24,12 @@ export interface Country {
   };
 }
 
+export interface RandomQuoteProps {
+  setRandomQuote: (value:QuoteType) => void;
+  setIsLoading: (value:boolean) => void;
+  setError: (value:boolean) => void;
+}
+
 interface Nationality {
   country_id: string;
   probability: number;

@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="*" element={<Navigate to="/quotes" />} />
         <Route path="/quotes" element={<QuotesPage />} />
-        <Route path="/randomQuote" element={<RandomQuotesPage />} />
+        <Route path="/random-quote" element={<RandomQuotesPage />} />
       </Routes>
     </div>
   );

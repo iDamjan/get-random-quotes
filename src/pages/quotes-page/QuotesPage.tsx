@@ -9,7 +9,7 @@ export const QuotesPage = () => {
   return (
     <div className={classes.container}>
       <QuotesList />
-      <Button onClick={() => navigate("/randomQuote")}>
+      <Button onClick={() => navigate("/random-quote")}>
         Generate Game Of Thrones Wisdom
       </Button>
     </div>

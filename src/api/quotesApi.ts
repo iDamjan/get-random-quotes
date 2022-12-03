@@ -5,8 +5,7 @@ export const getQuotes = (quantity: number): Promise<QuoteType[]> =>
     (data) => data.json()
   );
 
-  export const getRandomQuote = (): Promise<QuoteType> =>
-  fetch(`https://api.gameofthronesquotes.xyz/v1/random/1`).then(
-    (data) => data.json()
+export const getRandomQuote = (): Promise<QuoteType> =>
+  fetch(`https://api.gameofthronesquotes.xyz/v1/random/1`).then((data) =>
+    data.json()
   );
-

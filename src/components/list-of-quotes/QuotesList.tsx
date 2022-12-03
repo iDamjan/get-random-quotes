@@ -8,9 +8,8 @@ import Paper from "@mui/material/Paper";
 import classes from "./quotes-list.module.scss";
 import { QuoteWithNationality } from "../../types/types";
 import { useState, useEffect } from "react";
-import { getQuotes } from "../../api/quotesApi";
-import { getNationalitiesByName } from "../../api/nationalitiesApi";
-import { getCountryByCode } from "../../api/countriesApi";
+import { getQuotesWithNationalities } from "./utils";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function QuotesList() {
   const [quotes, setQuotes] = useState<QuoteWithNationality[]>([]);
@@ -21,22 +20,7 @@ export default function QuotesList() {
     const init = async () => {
       try {
         setIsLoading(true);
-        const data = await getQuotes(10);
-        let quotesWithNationalities: QuoteWithNationality[] = [];
-        for (let i = 0; i < data.length; i++) {
-          const name = data[i].character?.name.split(" ")[0];
-          const nationality = await getNationalitiesByName(name);
-          const country = await getCountryByCode(
-            nationality.country[0]?.country_id
-          );
-          const countryImage = country[0]?.flags.svg;
-          quotesWithNationalities.push({
-            ...data[i],
-            countryImage,
-            countryId: nationality.country[0]?.country_id,
-          });
-        }
-
+        const quotesWithNationalities = await getQuotesWithNationalities();
         setQuotes(quotesWithNationalities);
       } catch (e) {
         console.error(e);
@@ -61,17 +45,22 @@ export default function QuotesList() {
     <TableContainer
       className={classes.container}
       component={Paper}
-      sx={{ maxWidth: 800, borderRadius: "none" }}
+      sx={{
+        width: "100%",
+        maxWidth: 800,
+        borderRadius: "none",
+        alignItems: isLoading ? "center" : "none",
+      }}
     >
       {isLoading ? (
-        <p>Loading...</p>
+        <CircularProgress className={classes.spiner} />
       ) : (
         <Table
           sx={{ minWidth: 650, height: "100%", borderRadius: "none" }}
           aria-label="simple table"
         >
           <TableHead>
-            <TableRow>
+            <TableRow className={classes.mainRow}>
               <TableCell>ID</TableCell>
               <TableCell align="left">Quote</TableCell>
               <TableCell align="left">Name</TableCell>

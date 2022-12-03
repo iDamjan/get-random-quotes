@@ -1,20 +1,22 @@
-.container{
-    background-color: white;
-    width: 100%;
-    max-width: 950px;
-    height: 250px;
-    padding: 25px;
-    font-family: 'Roboto', sans-serif;
-    color: #012230;
-    text-align: center;
-h1{
-   font-size: 35px;
-
-}
-p{
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  max-width: 950px;
+  height: 250px;
+  padding: 25px;
+  font-family: "Roboto", sans-serif;
+  color: #012230;
+  text-align: center;
+  h1 {
+    font-size: 35px;
+  }
+  p {
     font-size: 30px;
     font-weight: 900;
     font-style: italic;
-}
-
+  }
 }
